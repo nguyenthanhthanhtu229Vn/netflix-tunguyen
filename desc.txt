@@ -1,0 +1,6 @@
+fuse.js  for search
+firebase for authentication
+styled-components for css
+use react-router-dom 
+
+tmpdp key api 

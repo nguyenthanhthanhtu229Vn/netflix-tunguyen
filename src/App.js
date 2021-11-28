@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import * as ROUTES from "./constants/routes";
+import { Home, Browse, Signin, Signup } from "./pages/index";
+import { useAuthListener } from "./hooks";
+export default function App() {
+  const { user } = useAuthListener();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          exact
+          path={ROUTES.SIGN_IN}
+          // element={!user ? <Signin /> : <Navigate to={ROUTES.BROWSE} />}
+          element={<Signin />}
+        ></Route>
+        <Route
+          exact
+          path={ROUTES.SIGN_UP}
+          // element={!user ? <Signup /> : <Navigate to={ROUTES.BROWSE} />}
+          element={<Signup />}
+        ></Route>
+        <Route
+          exact
+          path={ROUTES.BROWSE}
+          element={user ? <Browse /> : <Navigate to={ROUTES.SIGN_IN} />}
+        ></Route>
+        <Route
+          exact
+          path={ROUTES.HOME}
+          element={!user ? <Home /> : <Navigate to={ROUTES.BROWSE} />}
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
