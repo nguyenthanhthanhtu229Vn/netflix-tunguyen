@@ -16,6 +16,7 @@ import {
   Search,
   SearchIcon,
   SearchInput,
+  Frame,
   PlayButton,
 } from "./styles/header";
 export default function Header({ bg = true, children, ...restProps }) {
@@ -81,6 +82,9 @@ Header.Profile = function HeaderProfile({ children, ...restProps }) {
 
 Header.Frame = function HeaderFrame({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
+};
+Header.Frame2 = function HeaderFrame2({ children, ...restProps }) {
+  return <Frame {...restProps}>{children}</Frame>;
 };
 
 Header.Group = function HeaderGroup({ children, ...restProps }) {

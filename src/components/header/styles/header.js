@@ -3,24 +3,48 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Background = styled.div`
   display: flex;
   box-sizing: border-box;
-  padding-bottom: 170px;
+  margin-left: -20px;
+  ${"" /* padding-bottom: 170px; */}
   height: 100vh;
   flex-direction: column;
   border-bottom: 8px solid #222;
   background: url(${({ src }) =>
-      src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"})
+      src ? `${src}` : "../images/misc/home-bg.jpg"})
     top left / cover no-repeat;
   background-size: cover;
   object-fit: cover;
   @media (max-width: 1100px) {
     height: auto;
     padding: 0px 5%;
-    padding-bottom: 70px;
+    ${"" /* padding-bottom: 70px; */}
     ${({ dontShowOnSmallViewPort }) =>
       dontShowOnSmallViewPort && `background:none;`}
   }
 `;
-export const Frame = styled.div``;
+
+export const Group = styled.div`
+  display: flex;
+  align-items: center;
+  &:last-of-type {
+    margin-right: 40px;
+  }
+`;
+
+export const Frame = styled.div`
+  position: fixed;
+  display: flex;
+  z-index: 999;
+  top: 0;
+  background-color: #000000;
+  width: 100%;
+  padding: 10px 0;
+  padding-left: 20px;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    display: flex;
+  }
+`;
 export const Logo = styled.img`
   height: 32px;
   width: 108px;
@@ -111,11 +135,6 @@ export const TextLink = styled.p`
   }
 `;
 
-export const Group = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 export const Picture = styled.button`
   background: url(${({ src }) => src});
   background-size: contain;
@@ -188,8 +207,8 @@ export const SearchIcon = styled.button`
 
 export const PlayButton = styled.button`
   box-shadow: 0 0.6vw 1vw -0.4vw rgba(0, 0, 0, 0.35);
-  background-color: #e6e6e6;
-  color: #000;
+  background-color: rgba(230, 230, 230, 0.5);
+  color: white;
   border-width: 0;
   padding: 10px 20px;
   border-radius: 5px;

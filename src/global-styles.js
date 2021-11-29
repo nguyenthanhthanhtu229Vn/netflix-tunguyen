@@ -8,9 +8,11 @@ export const GlobalStyles = createGlobalStyle`
      background-color: black;
      color: #333333;
      font-size:16px;
+     scroll-behavior: smooth;
+     overflow-x: hidden;
  };
  ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 };
 /* Handle */
 ::-webkit-scrollbar-thumb {

@@ -1,5 +1,4 @@
 export default function selectionFilter({ series, films } = []) {
-  console.log(series);
   return {
     series: [
       {

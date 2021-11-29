@@ -73,30 +73,33 @@ Card.Image = function CardImage({ ...restProps }) {
   return <Image {...restProps} />;
 };
 
-Card.Feature = function CardFeature({ children, category, ...restProps }) {
+Card.Feature = function CardFeature({
+  children,
+  title,
+  detailMovie,
+  ...restProps
+}) {
   const { showFeature, itemFeature, setShowFeature } =
     useContext(FeatureContext);
-
-  return showFeature ? (
+  return showFeature && detailMovie.id == itemFeature.id ? (
     <Feature
       {...restProps}
-      src={`/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}
+      src={`https://image.tmdb.org/t/p/original/${detailMovie.backdrop_path}`}
     >
       <Content>
-        <FeatureTitle>{itemFeature.title}</FeatureTitle>
-        <FeatureText>{itemFeature.description}</FeatureText>
+        <FeatureTitle>
+          {detailMovie.name || detailMovie.title || detailMovie.original_name}
+        </FeatureTitle>
+        <FeatureText>{detailMovie.overview}</FeatureText>
         <FeatureClose onClick={() => setShowFeature(false)}>
           <img src="/images/icons/close.png" alt="Close" />
         </FeatureClose>
 
         <Group margin="30px 0" flexDirection="row" alignItems="center">
-          <Maturity rating={itemFeature.maturity}>
-            {itemFeature.maturity < 12 ? "PG" : itemFeature.maturity}
+          <Maturity rating={detailMovie.maturity}>
+            {detailMovie.vote_average}
           </Maturity>
-          <FeatureText fontWeight="bold">
-            {itemFeature.genre.charAt(0).toUpperCase() +
-              itemFeature.genre.slice(1)}
-          </FeatureText>
+          <FeatureText fontWeight="bold">{title}</FeatureText>
         </Group>
 
         {children}
